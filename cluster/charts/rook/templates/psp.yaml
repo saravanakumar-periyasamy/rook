@@ -8,9 +8,7 @@ metadata:
 spec:
   fsGroup:
     rule: RunAsAny
-  readOnlyRootFilesystem: true
-  requiredDropCapabilities:
-  - ALL
+  privileged: true
   runAsUser:
     rule: RunAsAny
   seLinux:
@@ -18,10 +16,10 @@ spec:
   supplementalGroups:
     rule: RunAsAny
   volumes:
-  - configMap
-  - emptyDir
-  - projected
-  - secret
-  - downwardAPI
-  - persistentVolumeClaim
+  - '*'
+  allowedCapabilities:
+  - '*'
+  hostPID: true
+  hostIPC: true
+  hostNetwork: true
 {{- end }}
