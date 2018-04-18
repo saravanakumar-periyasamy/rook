@@ -1,0 +1,27 @@
+{{- if .Values.pool.enabled -}}
+apiVersion: rook.io/v1alpha1
+kind: Pool
+metadata:
+  name: {{ template "rook-resources.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicated:
+    size: {{ .Values.pool.replicated.size }}
+  erasureCoded:
+    dataChunks: {{ .Values.pool.erasureCoded.dataChunks }}
+    codingChunks: {{ .Values.pool.erasureCoded.codingChunks }}
+  failureDomain: {{ .Values.pool.failureDomain }}
+  crushRoot: {{ .Values.pool.crushRoot }}
+{{- if .Values.pool.storageClass.enabled }}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "{{ .Values.pool.storageClass.isDefaultClass }}"
+  name: {{ template "rook-resources.fullname" . }}
+provisioner: rook.io/block
+parameters:
+  pool: {{ template "rook-resources.fullname" . }}
+{{- end }}
+{{- end }}

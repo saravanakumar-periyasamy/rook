@@ -62,10 +62,20 @@ cluster:
           cpu: 2
           memory: 4Gi
 
-
 # Pool resource - https://rook.io/docs/rook/master/pool-crd.html
 pool:
   enabled: true
+  replicated:
+    size: 3
+  erasureCoded:
+    dataChunks:
+    codingChunks:
+  failureDomain: host
+  crushRoot: default
+
+  storageClass:
+    enabled: true
+    isDefaultClass: true
 
 # ObjestStore resource - https://rook.io/docs/rook/master/object-store-crd.html
 objectStore:
@@ -73,4 +83,7 @@ objectStore:
 
 # FileSystem resource - https://rook.io/docs/rook/master/filesystem-crd.html
 filesystem:
+  enabled: true
+
+toolbox:
   enabled: true
