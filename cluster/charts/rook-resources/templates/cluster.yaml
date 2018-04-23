@@ -8,15 +8,15 @@ spec:
   dataDirHostPath: {{ .Values.cluster.dataDirHostPath }}
   hostNetwork: {{ .Values.cluster.hostNetwork }}
   monCount: {{ .Values.cluster.monCount }}
-  placement:
-    # mgr:
-    #   {{ .Values.cluster.placement.mgr }}
-    # mon:
-    #   {{ .Values.cluster.placement.mon }}
-    # osd:
-    #   {{ .Values.cluster.placement.osd }}
-    # all:
-    #   {{ .Values.cluster.placement.all }}
+  # placement:
+  #   mgr:
+  #     {{ .Values.cluster.placement.mgr }}
+  #   mon:
+  #     {{ .Values.cluster.placement.mon }}
+  #   osd:
+  #     {{ .Values.cluster.placement.osd }}
+  #   all:
+  #     {{ .Values.cluster.placement.all }}
   storage:
     useAllNodes: {{ .Values.cluster.storage.useAllNodes }}
     useAllDevices: {{ .Values.cluster.storage.useAllDevices }}
