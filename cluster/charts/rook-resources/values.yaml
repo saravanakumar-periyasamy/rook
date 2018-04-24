@@ -11,79 +11,80 @@ rbacEnable: true
 pspEnable: true
 
 # Cluster resource - https://rook.io/docs/rook/master/cluster-crd.html
-cluster:
-  enabled: true
-  dataDirHostPath:
-  hostNetwork: false
-  monCount: 3
-  placement:
-    mgr: {}
-    mon: {}
-    osd: {}
-    all: |
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: node-role.kubernetes.io/worker
-                operator: Exists
-  storage:
-    useAllNodes: true
-    useAllDevices: false
-    deviceFilter:
-    metadataDevice:
-    directories: []
-    storeConfig:
-      storeType: filestore
-      databaseSizeMB:
-      walSizeMB:
-      journalSizeMB:
-    nodes: []
-  resources:
-    mgr:
-      requests:
-          cpu: 500m
-          memory: 1Gi
-      limits:
-          cpu: 2
-          memory: 4Gi
-    mon:
-      requests:
-          cpu: 500m
-          memory: 1Gi
-      limits:
-          cpu: 2
-          memory: 4Gi
-    osd:
-      requests:
-          cpu: 500m
-          memory: 1Gi
-      limits:
-          cpu: 2
-          memory: 4Gi
+clusters:
+  rook:
+    dataDirHostPath:
+    hostNetwork: false
+    monCount: 3
+    placement:
+      mgr: {}
+      mon: {}
+      osd: {}
+      all: |
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: node-role.kubernetes.io/worker
+                  operator: Exists
+    storage:
+      useAllNodes: true
+      useAllDevices: false
+      deviceFilter:
+      metadataDevice:
+      directories: []
+      storeConfig:
+        storeType: filestore
+        databaseSizeMB:
+        walSizeMB:
+        journalSizeMB:
+      nodes: []
+    resources:
+      mgr:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+        limits:
+            cpu: 2
+            memory: 4Gi
+      mon:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+        limits:
+            cpu: 2
+            memory: 4Gi
+      osd:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+        limits:
+            cpu: 2
+            memory: 4Gi
 
 # Pool resource - https://rook.io/docs/rook/master/pool-crd.html
-pool:
-  enabled: true
-  replicated:
-    size: 3
-  erasureCoded:
-    dataChunks:
-    codingChunks:
-  failureDomain: host
-  crushRoot: default
-
-  storageClass:
-    enabled: true
-    isDefaultClass: true
+pools:
+  replicapool:
+    replicated:
+      size: 3
+    erasureCoded:
+      dataChunks:
+      codingChunks:
+    failureDomain: host
+    crushRoot: default
+    storageClass:
+      enabled: true
+      isDefaultClass: true
 
 # ObjestStore resource - https://rook.io/docs/rook/master/object-store-crd.html
-objectStore:
-  enabled: true
+objectStores:
+  my-store:
+    enabled: false
 
 # FileSystem resource - https://rook.io/docs/rook/master/filesystem-crd.html
-filesystem:
-  enabled: true
+filesystems:
+  myfs:
+    enabled: false
 
 toolbox:
-  enabled: true
+  enabled: false

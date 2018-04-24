@@ -1,4 +1,4 @@
-{{- if .Values.cluster.enabled -}}
+{{- range .Values.clusters }}
 apiVersion: rook.io/v1alpha1
 kind: Cluster
 metadata:
