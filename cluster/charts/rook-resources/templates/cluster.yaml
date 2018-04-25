@@ -9,11 +9,14 @@ spec:
   hostNetwork: {{ .Values.cluster.hostNetwork }}
   monCount: {{ .Values.cluster.monCount }}
   placement:
-    mgr: {{ .Values.cluster.placement.mgr }}
-    mon: {{ .Values.cluster.placement.mon }}
-    osd: {{ .Values.cluster.placement.osd }}
+    mgr:
+{{ toYaml .Values.cluster.placement.mgr | indent 6 }}
+    mon:
+{{ toYaml .Values.cluster.placement.mon | indent 6 }}
+    osd:
+{{ toYaml .Values.cluster.placement.osd | indent 6 }}
     all:
-      {{ toYaml .Values.cluster.placement.all | indent 4 }}
+{{ toYaml .Values.cluster.placement.all | indent 6 }}
   storage:
     useAllNodes: {{ .Values.cluster.storage.useAllNodes }}
     useAllDevices: {{ .Values.cluster.storage.useAllDevices }}

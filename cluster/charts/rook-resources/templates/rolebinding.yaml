@@ -4,7 +4,7 @@
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: rook-operator-psp-users
+  name: rook-operator
   namespace: {{ .Release.Namespace }}
   labels:
     operator: rook
@@ -12,7 +12,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: rook-operator-psp-user
+  name: rook-operator
 subjects:
 - kind: ServiceAccount
   name: default
@@ -20,6 +20,6 @@ subjects:
 - kind: ServiceAccount
   name: rook-ceph-osd
   namespace: {{ .Release.Namespace }}
-{{- end }}  
+{{- end }}
 {{- end }}
 {{- end }}

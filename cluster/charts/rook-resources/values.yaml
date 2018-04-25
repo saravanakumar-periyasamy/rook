@@ -17,9 +17,9 @@ cluster:
   hostNetwork: false
   monCount: 3
   placement:
-    mgr:
-    mon:
-    osd:
+    mgr: {}
+    mon: {}
+    osd: {}
     all:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
